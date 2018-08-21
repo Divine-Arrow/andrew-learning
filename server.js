@@ -12,8 +12,16 @@ app.use(bodyParser.json());
 app.post('/todos', (req, res)=> {
     var todo = new Todo({text: req.body.text});
     todo.save().then((doc) => {
-        res.status(200).send(doc);
+        res.send(doc);
     }, (e) => {
+        res.status(400).send(e);
+    });
+});
+
+app.get('/todos', (req, res) => {
+    Todo.find().then((result) => {
+        res.send({result});
+    }, (res) => {
         res.status(400).send(e);
     });
 });
