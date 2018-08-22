@@ -22,11 +22,12 @@ app.post('/todos', (req, res)=> {
 });
 
 app.get('/todos', (req, res) => {
-    Todo.find().then((result) => {
+    /* Todo.find().then((result) => {
         res.send({result});
     }, (res) => {
         res.status(400).send(e);
-    });
+    }); */
+    res.send(process.env.MONGODB_URI);
 });
 
 app.get('/todos/:id', (req, res) => {
