@@ -33,19 +33,19 @@ app.get('/todos/:id', (req, res) => {
     id = req.params.id;
     // isvalid
 
-    if (!ObjectID.isValid(id)) {
-        return res.status(404).send();
+    if (!ObjectId.isValid(id)) {
+        return res.status(400).send();
       }
     
-      Todo.findById(id).then((todo) => {
-        if (!todo) {
-          return res.status(404).send();
-        }
-    
-        res.send({todo});
-      }).catch((e) => {
-        res.status(400).send();
-      });
+    Todo.findById(id).then((todo) => {
+    if (!todo) {
+        return res.status(404).send();
+    }
+
+    res.send({todo});
+    }).catch((e) => {
+    res.status(400).send();
+    });
 
     /* if(!ObjectId.isValid(id)) {
         return res.status(400).send();
