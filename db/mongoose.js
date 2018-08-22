@@ -6,7 +6,14 @@ mongoose.Promise = global.Promise;
     .catch((err) => console.error(err));; */
 
 
-mongoose.connect('process.env.MONGODB_URI')
+mongoose.connect('process.env.MONGODB_URI', {
+        auth: {
+            user: 'todouser',
+            password: 'mmm&07W7m'
+        }
+    })
+    .then(() => console.log('connection successful'))
+    .catch((err) => console.error(err));
 
 module.exports = {
     mongoose
