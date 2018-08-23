@@ -47,6 +47,10 @@ app.get('/todos/:id', (req, res) => {
 
 });
 
+app.get('*', (req, res) => {
+    res.send('<h1>Welcome to TodoApp</h1>');
+});
+
 app.listen(port, ()=> {
     console.log(`Server is started at ${port}`)
 });
