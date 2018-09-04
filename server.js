@@ -92,6 +92,23 @@ app.patch('/todos/:id', (req, res) => {
     });
 });
 
+app.post('/users', (req, res) => {
+    
+    var body = _.pick(req.body, ['email', 'password']);
+    if(!body) {
+        res.status(400).send();
+    }
+    
+    var newUser = new User(body);
+
+    newUser.save().then((result) => {
+        if(!result) {
+            return res.status(404).send();
+        }
+        res.send(`<h1>${result}</h1>`);
+    }).catch((e) => res.status(400).send(e));
+});
+
 app.get('*', (req, res) => {
     res.send('<h1>Welcome to TodoApp</h1>');
 });
